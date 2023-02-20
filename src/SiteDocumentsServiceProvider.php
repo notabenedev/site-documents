@@ -3,6 +3,7 @@
 namespace Notabenedev\SiteDocuments;
 
 use Illuminate\Support\ServiceProvider;
+use Notabenedev\SiteDocuments\Console\Commands\SiteDocumentsMakeCommand;
 
 class SiteDocumentsServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,19 @@ class SiteDocumentsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //Публикация конфигурации
+        $this->publishes([__DIR__.'/config/site-documents.php' => config_path('site-documents.php'),
+        ], 'config');
 
+        // Перенос миграций
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+
+        //Console
+        if ($this->app->runningInConsole()){
+            $this->commands([
+                SiteDocumentsMakeCommand::class,
+            ]);
+        }
     }
 
     /**
@@ -23,7 +36,9 @@ class SiteDocumentsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->mergeConfigFrom(
+            __DIR__.'/config/site-documents.php','site-documents'
+        );
     }
 
 
