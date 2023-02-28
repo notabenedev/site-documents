@@ -41,7 +41,6 @@ class CreateDocumentCategoriesTable extends Migration
                 ->nullable()
                 ->comment("Родительская категория");
 
-
             $table->boolean("nested")
                 ->nullable()
                 ->comment('Раскрыть вложенные категории');

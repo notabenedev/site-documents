@@ -15,7 +15,12 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      {--all : Run all}
      {--models : Export models}
      {--policies : Export and create rules} 
-     {--only-default : Create only default rules}';
+     {--only-default : Create only default rules}
+     {--controllers : Create only default rules}
+     {--controllers : Create only default rules}
+     {--observers : Export observers}
+     {--vue : Export vue}
+     ';
 
     /**
      * The console command description.
@@ -57,6 +62,41 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
             "policy" => "DocumentCategoryPolicy",
         ],
     ];
+
+
+    /**
+     * Make Controllers
+     */
+    protected $controllers = [
+        "Admin" => ["DocumentCategoryController"],
+    ];
+
+
+    /**
+     * Создание наблюдателей
+     *
+     * @var array
+     */
+    protected $observers = ["DocumentCategoryObserver"];
+
+    /**
+     * Vue files folder
+     *
+     * @var string
+     */
+    protected $vueFolder = "site-documents";
+
+    /**
+     * Vue files list
+     *
+     * @var array
+     */
+    protected $vueIncludes = [
+        'admin' => [ 'admin-document-category-list' => "DocumentCategoryListComponent",
+        ],
+        'app' => [],
+    ];
+
     /**
      * Create a new command instance.
      *
@@ -84,5 +124,18 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
         if ($this->option("policies") || $all) {
             $this->makeRules();
         }
+
+        if ($this->option("controllers") || $all) {
+            $this->exportControllers("Admin");
+        }
+
+        if ($this->option("observers") || $all) {
+            $this->exportObservers();
+        }
+
+        if ($this->option("vue") || $all) {
+            $this->makeVueIncludes("admin");
+        }
+
     }
 }

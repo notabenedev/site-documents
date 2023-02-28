@@ -1,11 +1,16 @@
 <?php
 return [
-"sitePackageName" => "Документы",
-"siteDocumentCategoriesName" => "Категории документов",
-"siteDocumentsName" => "Файлы",
-"documentCategoryUrlName" => "documents",
-"documentUrlName" => "file",
+    "sitePackageName" => "Документы",
+    "siteDocumentCategoriesName" => "Категории документов",
+    "siteDocumentsName" => "Файлы",
+    "documentCategoryUrlName" => "documents",
+    "documentUrlName" => "file",
 
-"documentCategoriesNest" => 3,
-"onePage" => false,
+    "siteBreadcrumbs" => true,
+    "onePage" => false,
+    "documentCategoriesNest" => 3,
+
+    "documentCategoryAdminRoutes" => true,
+    "documentCategorySiteRoutes" => true,
+    "documentCategoryFacade" => \Notabenedev\SiteDocuments\Helpers\DocumentCategoryActionsManager::class,
 ];
