@@ -76,9 +76,9 @@ class DocumentCategoryObserver
         if ($category->children->count()){
             throw new PreventDeleteException("Невозможно удалить категорию, у нее есть подкатегории");
         }
-//        if ($category->documents->count()){
-//            throw new PreventDeleteException("Невозможно удалить категорию, у нее есть элементы");
-//        }
+        if ($category->documents->count()){
+            throw new PreventDeleteException("Невозможно удалить категорию, у нее есть документы");
+        }
     }
 
     /**

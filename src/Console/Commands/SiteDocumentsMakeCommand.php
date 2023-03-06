@@ -2,6 +2,8 @@
 
 namespace Notabenedev\SiteDocuments\Console\Commands;
 
+use App\Menu;
+use App\MenuItem;
 use PortedCheese\BaseSettings\Console\Commands\BaseConfigModelCommand;
 
 class SiteDocumentsMakeCommand extends BaseConfigModelCommand
@@ -16,10 +18,10 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      {--models : Export models}
      {--policies : Export and create rules} 
      {--only-default : Create only default rules}
-     {--controllers : Create only default rules}
-     {--controllers : Create only default rules}
+     {--controllers : Create controllers}
      {--observers : Export observers}
      {--vue : Export vue}
+     {--menu : Config menu}
      ';
 
     /**
@@ -47,7 +49,7 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      * The models to  be exported
      * @var array
      */
-    protected $models = ["DocumentCategory"];
+    protected $models = ["DocumentCategory", "Document"];
 
 
     /**
@@ -58,8 +60,13 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
     protected $ruleRules = [
         [
             "title" => "Категории документов",
-            "slug" => "documentCategory",
+            "slug" => "document-categories",
             "policy" => "DocumentCategoryPolicy",
+        ],
+        [
+            "title" => "Документы",
+            "slug" => "documents",
+            "policy" => "DocumentPolicy",
         ],
     ];
 
@@ -68,7 +75,8 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      * Make Controllers
      */
     protected $controllers = [
-        "Admin" => ["DocumentCategoryController"],
+        "Admin" => ["DocumentCategoryController", "DocumentController"],
+        "Site" => ["DocumentController"],
     ];
 
 
@@ -92,7 +100,9 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      * @var array
      */
     protected $vueIncludes = [
-        'admin' => [ 'admin-document-category-list' => "DocumentCategoryListComponent",
+        'admin' => [
+            'admin-document-category-list' => "DocumentCategoryListComponent",
+            'documents-loader' => "DocumentComponent",
         ],
         'app' => [],
     ];
@@ -127,6 +137,7 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
 
         if ($this->option("controllers") || $all) {
             $this->exportControllers("Admin");
+            $this->exportControllers("Site");
         }
 
         if ($this->option("observers") || $all) {
@@ -137,5 +148,42 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
             $this->makeVueIncludes("admin");
         }
 
+        if ($this->option('menu') || $all) {
+            $this->makeMenu();
+        }
+
+    }
+
+    /**
+     * Создать меню.
+     */
+    protected function makeMenu()
+    {
+        try {
+            $menu = Menu::query()->where("key", "admin")->firstOrFail();
+        }
+        catch (\Exception $exception) {
+            return;
+        }
+
+        $title = config("site-documents.sitePackageName");
+        $itemData = [
+            "title" => $title,
+            "menu_id" => $menu->id,
+            "url" => "#",
+            "template" => "site-documents::admin.menu",
+        ];
+
+        try {
+            $menuItem = MenuItem::query()
+                ->where("menu_id", $menu->id)
+                ->where("title", "$title")
+                ->firstOrFail();
+            $this->info("Menu item '{$title}' not updated");
+        }
+        catch (\Exception $exception) {
+            MenuItem::create($itemData);
+            $this->info("Menu item '{$title}' was created");
+        }
     }
 }

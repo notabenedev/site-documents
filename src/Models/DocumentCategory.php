@@ -2,14 +2,16 @@
 
 namespace Notabenedev\SiteDocuments\Models;
 
+use App\Document;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Notabenedev\SiteDocuments\Traits\ShouldDocument;
 use PortedCheese\BaseSettings\Traits\ShouldSlug;
 use PortedCheese\SeoIntegration\Traits\ShouldMetas;
 
 class DocumentCategory extends Model
 {
-    use HasFactory, ShouldSlug, ShouldMetas;
+    use HasFactory, ShouldSlug, ShouldMetas, ShouldDocument;
 
     protected $fillable = [
         "title",
@@ -75,4 +77,5 @@ class DocumentCategory extends Model
             ->with("children")
             ->get();
     }
+
 }

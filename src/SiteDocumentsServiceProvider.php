@@ -36,8 +36,14 @@ class SiteDocumentsServiceProvider extends ServiceProvider
         if (config("site-documents.documentCategoryAdminRoutes")) {
             $this->loadRoutesFrom(__DIR__."/routes/admin/document-category.php");
         }
+        if (config("site-documents.documentAjaxRoutes")) {
+            $this->loadRoutesFrom(__DIR__."/routes/ajax/document.php");
+        }
         if (config("site-documents.documentCategorySiteRoutes")) {
             $this->loadRoutesFrom(__DIR__."/routes/site/document-category.php");
+        }
+        if (config("site-documents.documentSiteRoutes")) {
+            $this->loadRoutesFrom(__DIR__."/routes/site/document.php");
         }
 
         // Подключение шаблонов.
@@ -80,6 +86,10 @@ class SiteDocumentsServiceProvider extends ServiceProvider
     {
         $this->app->singleton("document-category-actions", function () {
             $class = config("site-documents.documentCategoryFacade");
+            return new $class;
+        });
+        $this->app->singleton("document-actions", function () {
+            $class = config("site-documents.documentFacade");
             return new $class;
         });
     }

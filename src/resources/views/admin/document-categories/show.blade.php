@@ -56,4 +56,46 @@
             </div>
         </div>
     @endif
+
+    @can("viewAny", \App\Document::class)
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Документы</h5>
+                </div>
+            </div>
+        </div>
+        @canany(["update", "create", "delete"], \App\Document::class)
+            <div class="col-12">
+                <documents-loader :list-url="'{{ route("admin.vue.documents.list", ["model" => "documentCategory", "id" => $category->id]) }}'"
+                                  :store-url="'{{ route("admin.vue.documents.store", ["model" => "documentCategory", "id" => $category->id]) }}'"
+                                  @can('delete', \App\Document::class)
+                                  can-delete
+                                  @endcan
+                                  @can('create', \App\Document::class)
+                                  can-create
+                                  @endcan
+                                  @can('update', \App\Document::class)
+                                  can-update
+                        @endcan
+                >
+                </documents-loader>
+            </div>
+        @else
+            <ul>
+                @foreach ($category->documents as $document)
+                    <li>
+                        @can("view", \App\Document::class)
+                            <a href="{{ route('site.documents.show', ['document' => $document]) }}"
+                               class="btn btn-link">
+                                {{ $document->title }}
+                            </a>
+                        @else
+                            <span>{{ $document->title }}</span>
+                        @endcan
+                    </li>
+                @endforeach
+            </ul>
+        @endcanany
+    @endcan
 @endsection
