@@ -48,6 +48,8 @@ class DocumentResource extends JsonResource
                 "document" => $this->slug,
             ]),
             "downloadUrl" => $this->show_url,
+            "signatureShowUrl" => route("admin.vue.document-signatures.show", ["id" => $this->id]),
+            "signatureStoreUrl" => route("admin.vue.document-signatures.store", ["id" => $this->id]),
         ];
     }
 }

@@ -133,6 +133,37 @@
                       <a :href="file.downloadUrl" class="btn btn-outline-secondary" target="_blank">
                         <i class="fas fa-file-download"></i>
                       </a>
+
+                      <a class="btn btn-warning" v-if="signaturesCanViewAny" data-toggle="modal" v-bind:data-target="'#documentSigModal' + file.id">
+                        <i class="fas fa-signature"></i>
+                      </a>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" v-if="signaturesCanViewAny"
+                         v-bind:id="'documentSigModal' + file.id" tabindex="-1"
+                         v-bind:aria-labelledby="'documentSigModal' + file.id + 'Label'"
+                         aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title" v-bind:id="'documentSigModal' + file.id + 'Label'">Подпись .sig</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <document-signature-loader :show-url="file.signatureShowUrl" :sig-url="file.signatureStoreUrl" :file-id="file.id"
+                            :signatures-can-update="signaturesCanUpdate"
+                            :signatures-can-create="signaturesCanCreate"
+                            :signatures-can-delete="signaturesCanDelete"
+                            :signatures-can-view-any="signaturesCanViewAny"
+                            :signatures-can-view="signaturesCanView"
+                            >
+                            </document-signature-loader>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -162,6 +193,26 @@ export default {
       required: false
     },
     canUpdate:{
+      type: Boolean,
+      required: false
+    },
+    signaturesCanView:{
+      type: Boolean,
+      required: false
+    },
+    signaturesCanViewAny:{
+      type: Boolean,
+      required: false
+    },
+    signaturesCanCreate:{
+      type: Boolean,
+      required: false
+    },
+    signaturesCanUpdate:{
+      type: Boolean,
+      required: false
+    },
+    signaturesCanDelete:{
       type: Boolean,
       required: false
     },

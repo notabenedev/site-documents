@@ -15,7 +15,9 @@ return [
     "documentCategoryAdminRoutes" => true,
     "documentCategorySiteRoutes" => true,
     "documentAjaxRoutes" => true,
+    "documentSignatureAjaxRoutes" => true,
     "documentSiteRoutes" => true,
+    "documentSignatureSiteRoutes" => true,
     "documentCategoryFacade" => \Notabenedev\SiteDocuments\Helpers\DocumentCategoryActionsManager::class,
     "documentFacade" => \Notabenedev\SiteDocuments\Helpers\DocumentActionsManager::class,
     "documentModels" => array(

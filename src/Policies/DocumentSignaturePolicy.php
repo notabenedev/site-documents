@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use PortedCheese\BaseSettings\Traits\InitPolicy;
 
-class DocumentPolicy
+class DocumentSignaturePolicy
 {
     use HandlesAuthorization;
     use InitPolicy {
@@ -21,7 +21,7 @@ class DocumentPolicy
 
     public function __construct()
     {
-        $this->__ipoConstruct("DocumentPolicy");
+        $this->__ipoConstruct("DocumentSignaturePolicy");
     }
 
     /**

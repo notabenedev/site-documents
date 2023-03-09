@@ -49,7 +49,7 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      * The models to  be exported
      * @var array
      */
-    protected $models = ["DocumentCategory", "Document"];
+    protected $models = ["DocumentCategory", "Document", "DocumentSignature"];
 
 
     /**
@@ -67,6 +67,11 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
             "title" => "Документы",
             "slug" => "documents",
             "policy" => "DocumentPolicy",
+        ],
+        [
+            "title" => "Подписи к документам",
+            "slug" => "document-signatures",
+            "policy" => "DocumentSignaturePolicy",
         ],
     ];
 
@@ -103,6 +108,7 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
         'admin' => [
             'admin-document-category-list' => "DocumentCategoryListComponent",
             'documents-loader' => "DocumentComponent",
+            'document-signature-loader' => "DocumentSignatureComponent"
         ],
         'app' => [],
     ];

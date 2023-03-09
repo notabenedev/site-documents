@@ -36,11 +36,17 @@ class SiteDocumentsServiceProvider extends ServiceProvider
         if (config("site-documents.documentCategoryAdminRoutes")) {
             $this->loadRoutesFrom(__DIR__."/routes/admin/document-category.php");
         }
+        if (config("site-documents.documentSignatureAjaxRoutes")) {
+            $this->loadRoutesFrom(__DIR__."/routes/ajax/document-signature.php");
+        }
         if (config("site-documents.documentAjaxRoutes")) {
             $this->loadRoutesFrom(__DIR__."/routes/ajax/document.php");
         }
         if (config("site-documents.documentCategorySiteRoutes")) {
             $this->loadRoutesFrom(__DIR__."/routes/site/document-category.php");
+        }
+        if (config("site-documents.documentSignatureSiteRoutes")) {
+            $this->loadRoutesFrom(__DIR__."/routes/site/document-signature.php");
         }
         if (config("site-documents.documentSiteRoutes")) {
             $this->loadRoutesFrom(__DIR__."/routes/site/document.php");

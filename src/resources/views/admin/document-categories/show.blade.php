@@ -77,7 +77,22 @@
                                   @endcan
                                   @can('update', \App\Document::class)
                                   can-update
-                        @endcan
+                                  @endcan
+                                  @can('update', \App\DocumentSignature::class)
+                                  signatures-can-update
+                                  @endcan
+                                  @can('delete', \App\DocumentSignature::class)
+                                  signatures-can-delete
+                                  @endcan
+                                  @can('create', \App\DocumentSignature::class)
+                                  signatures-can-create
+                                  @endcan
+                                  @can('viewAny', \App\DocumentSignature::class)
+                                  signatures-can-view-any
+                                  @endcan
+                                  @can('view', \App\DocumentSignature::class)
+                                  signatures-can-view
+                                  @endcan
                 >
                 </documents-loader>
             </div>

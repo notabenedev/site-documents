@@ -26,6 +26,9 @@ class Document extends Model
         parent::boot();
 
         static::deleting(function (self $model) {
+            foreach ($model->signatures as $signature){
+                $signature->delete();
+            }
             Storage::delete($model->path);
         });
     }
@@ -125,4 +128,12 @@ class Document extends Model
         return $model;
     }
 
+    /**
+     * Signatures
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function signatures(){
+        return $this->hasMany(\App\DocumentSignature::class)->orderBy("date");
+    }
 }
