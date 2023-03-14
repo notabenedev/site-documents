@@ -2,12 +2,15 @@
 
 namespace Notabenedev\SiteDocuments;
 
+use App\Document;
 use App\DocumentCategory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\ServiceProvider;
 use Notabenedev\SiteDocuments\Console\Commands\SiteDocumentsMakeCommand;
 use Notabenedev\SiteDocuments\Events\DocumentCategoryChangePosition;
 use Notabenedev\SiteDocuments\Listeners\DocumentCategoryIdsInfoClearCache;
 use Notabenedev\SiteDocuments\Observers\DocumentCategoryObserver;
+use Notabenedev\SiteDocuments\Observers\DocumentObserver;
 
 class SiteDocumentsServiceProvider extends ServiceProvider
 {
@@ -54,7 +57,11 @@ class SiteDocumentsServiceProvider extends ServiceProvider
 
         // Подключение шаблонов.
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'site-documents');
-
+        if (! config("site-group-price.onePage", false)) {
+            view()->composer("site-documents::site.document-categories.includes.sidebar", function (View $view){
+                $view->with("categoriesTree", DocumentCategory::getTree());
+            });
+        }
         // Подключение метатегов.
         $seo = app()->config["seo-integration.models"];
         $seo["documentCategories"] = DocumentCategory::class;
@@ -117,6 +124,9 @@ class SiteDocumentsServiceProvider extends ServiceProvider
     {
         if (class_exists(DocumentCategoryObserver::class) && class_exists(DocumentCategory::class)) {
             DocumentCategory::observe(DocumentCategoryObserver::class);
+        }
+        if (class_exists(DocumentObserver::class) && class_exists(Document::class)) {
+            Document::observe(DocumentObserver::class);
         }
     }
 }

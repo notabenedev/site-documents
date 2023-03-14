@@ -16,7 +16,7 @@ trait ShouldDocument
     }
 
     /**
-     * Группы блоков.
+     * Документы.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
@@ -26,7 +26,7 @@ trait ShouldDocument
 
 
     /**
-     * Удалить все группы.
+     * Удалить все
      */
     public function clearDocuments()
     {

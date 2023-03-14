@@ -26,8 +26,8 @@
     "siteDocumentsName" => Название документов
     "documentCategoryUrlName" => url категорий документов
     "documentUrlName" => url документов
-
-    "documentCategoriesNest" => число (вложенность категорий документов),
+    "siteBreadcrumbs" => хлебыные крошки (true |false)
+    "documentCategoriesNest" => вложенность категорий документов (число),
     "onePage" => true, false - Ракрытие всех документов на одной странице:
         перед изменением настройки:
       - php artisan down
@@ -35,5 +35,6 @@
       - изменить настройку
       - php artisan up
       - открыть url главной страницы раздела
-     
+    
+    "documentModels" - модели для привязки документов - array("documentCategory" => \App\DocumentCategory::class, ..)
    

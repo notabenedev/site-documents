@@ -92,10 +92,11 @@ class Document extends Model
     public function getTeaser()
     {
         $ext = mb_strtolower(pathinfo($this->path, PATHINFO_EXTENSION));
-        $view = view("site.documents.includes.document",
+        $view = view("site-documents::site.documents.teaser",
             [
                 "document" => $this,
                 "size" => Storage::exists($this->path)? Storage::size($this->path) : "0",
+                "signatures" => $this->signatures,
                 "lightbox" => ($ext === "jpg" || $ext === "jpeg" || $ext === "png" || $ext === "webp") ? $ext : false,
                 "download" => $ext === "pdf" ? false : true,
             ]);
@@ -136,4 +137,5 @@ class Document extends Model
     public function signatures(){
         return $this->hasMany(\App\DocumentSignature::class)->orderBy("date");
     }
+
 }

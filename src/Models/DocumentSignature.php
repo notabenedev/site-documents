@@ -35,7 +35,7 @@ class DocumentSignature extends Model
 
 
     /**
-     * Получить модель для документа.
+     * Получить документ.
      *
      * @param $id
      * @return bool

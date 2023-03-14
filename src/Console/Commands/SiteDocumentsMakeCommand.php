@@ -81,7 +81,7 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      */
     protected $controllers = [
         "Admin" => ["DocumentCategoryController", "DocumentController"],
-        "Site" => ["DocumentController"],
+        "Site" => ["DocumentController", "DocumentCategoryController"],
     ];
 
 
@@ -90,7 +90,7 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      *
      * @var array
      */
-    protected $observers = ["DocumentCategoryObserver"];
+    protected $observers = ["DocumentCategoryObserver", "DocumentObserver"];
 
     /**
      * Vue files folder

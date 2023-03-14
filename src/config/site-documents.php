@@ -7,7 +7,6 @@ return [
     "documentCategoryUrlName" => "documents",
     "documentUrlName" => "document",
 
-
     "siteBreadcrumbs" => true,
     "onePage" => false,
     "documentCategoriesNest" => 3,

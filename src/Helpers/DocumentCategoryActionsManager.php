@@ -6,6 +6,7 @@ use App\DocumentCategory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use PhpParser\Comment\Doc;
 
@@ -109,6 +110,7 @@ class DocumentCategoryActionsManager
      */
     protected function clearTree(&$tree, $noParent)
     {
+
         foreach ($noParent as $id) {
             $this->removeChildren($tree, $id);
         }
@@ -237,9 +239,9 @@ class DocumentCategoryActionsManager
             }
             return $children;
         });
-        if ($includeSelf) {
-            $children[] = $category->id;
-        }
+//        if ($includeSelf) {
+//            $children[] = $category->id;
+//        }
         return $children;
     }
 
@@ -250,7 +252,7 @@ class DocumentCategoryActionsManager
      */
     public function forgetCategoryChildrenIdsCache(DocumentCategory $category)
     {
-        Cache::forget("category-actions-getCategoryChildren:{$category->id}");
+        Cache::forget("document-category-actions-getCategoryChildren:{$category->id}");
         $parent = $category->parent;
         if (! empty($parent)) {
             $this->forgetCategoryChildrenIdsCache($parent);
@@ -359,6 +361,7 @@ class DocumentCategoryActionsManager
         list($tree, $noParent) = $this->makeChildrenTreeData($category);
         $this->addChildren($tree);
         $this->clearTree($tree, $noParent);
+        $this->clearTree($tree,[$category->id]);
         return $tree;
     }
 
