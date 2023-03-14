@@ -21,6 +21,7 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      {--controllers : Create controllers}
      {--observers : Export observers}
      {--vue : Export vue}
+     {--scss : Export scss}
      {--menu : Config menu}
      ';
 
@@ -114,6 +115,17 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
     ];
 
     /**
+     * Стили.
+     *
+     * @var array
+     */
+    protected $scssIncludes = [
+        "app" => [
+            "site-documents/documents",
+        ],
+    ];
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -152,6 +164,10 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
 
         if ($this->option("vue") || $all) {
             $this->makeVueIncludes("admin");
+        }
+
+        if ($this->option("scss") || $all) {
+            $this->makeScssIncludes("app");
         }
 
         if ($this->option('menu') || $all) {

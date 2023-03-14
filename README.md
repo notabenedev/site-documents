@@ -15,6 +15,7 @@
         {--controllers : Create only default rules}
         {--observers : Export observers}
         {--vue : Export vue}
+        {--scss : Export scss}
 
 ## Description
     

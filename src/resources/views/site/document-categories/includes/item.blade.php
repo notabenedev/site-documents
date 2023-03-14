@@ -5,13 +5,9 @@
             {!! $item['short']  !!}
         </div>
     @endisset
-    <ul class="list-unstyled">
-        @foreach(\Notabenedev\SiteDocuments\Facades\DocumentActions::getModelDocumentsIds("App\DocumentCategory",$item["id"]) as $id => $document)
-            <li>
-                {!! $document->getTeaser() !!}
-            </li>
-        @endforeach
-    </ul>
+    @foreach(\Notabenedev\SiteDocuments\Facades\DocumentActions::getModelDocumentsIds("App\DocumentCategory",$item["id"]) as $id => $document)
+        {!! $document->getTeaser() !!}
+    @endforeach
     @isset($item['description'])
         <div class="documents-category__description">
             {!! $item['description']  !!}
