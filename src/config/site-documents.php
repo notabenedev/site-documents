@@ -9,6 +9,7 @@ return [
 
     "siteBreadcrumbs" => true,
     "onePage" => false,
+    "onePageSidebar" => false,
     "documentCategoriesNest" => 3,
 
     "documentCategoryAdminRoutes" => true,

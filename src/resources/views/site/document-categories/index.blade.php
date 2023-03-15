@@ -16,7 +16,7 @@
             </div>
         @endforeach
     </div>
-    @if (config("site-documents.onePage",true))
+    @if (config("site-documents.onePage",true) && config("site-documents.onePageSidebar",false))
         <div class="col-12 col-lg-4 order-first order-lg-last documents-sidebar">
             @include('site-documents::site.document-categories.includes.sidebar-one-page')
         </div>

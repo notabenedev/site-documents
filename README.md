@@ -12,10 +12,10 @@
         {--policies : Export and create rules}
         {--only-default : Create default rules}
         {--controllers : Create only default rules}
-        {--controllers : Create only default rules}
         {--observers : Export observers}
         {--vue : Export vue}
         {--scss : Export scss}
+        {--menu : create admin menu}
 
 ## Description
     
