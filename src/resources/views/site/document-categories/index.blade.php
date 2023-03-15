@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="col-12 col-lg-8">
+    <div class="col-12{{ config("site-documents.onePage",true) && config("site-documents.onePageSidebar",true) ? " col-lg-8": "" }}">
         @foreach($categories as $item)
             <div class="row documents-category">
                 <div class="col-12">
