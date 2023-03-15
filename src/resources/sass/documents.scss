@@ -158,14 +158,15 @@
     }
 
     &__short{
-      padding: 0.5rem 0;
-
+      margin-top: -1rem;
+      margin-bottom: 1rem;
+      color: $secondary;
     }
 
     &__description{
       padding: 1.25rem;
-      margin: 1rem -0.5*$grid-gutter-width;
-      background-color: lighten($primary, 20%);
+      margin: 1rem 0;
+      background-color: $border-grid;
     }
 
     &__info{

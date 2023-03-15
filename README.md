@@ -17,6 +17,11 @@
         {--scss : Export scss}
         {--menu : create admin menu}
 
+## Log
+    v0.0.3 Styles
+            - php artisan vendor:publish --provider="Notabenedev\SiteDocuments\SiteDocumentsServiceProvider" --tag=public --force
+    v0.0.2 add onePageSidebar config:
+            - php artisan vendor:publish --provider="Notabenedev\SiteDocuments\SiteDocumentsServiceProvider" --tag=config
 ## Description
     
 
