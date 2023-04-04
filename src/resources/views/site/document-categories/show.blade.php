@@ -39,13 +39,27 @@
         </div>
         @if($category->nested)
             @foreach($childrenTree as $id => $tree )
-                @foreach($tree["children"] as $item)
-                    <div class="row documents-category">
-                        <div class="col-12">
-                            @include("site-documents::site.document-categories.includes.item", ["item" => $item, "first" => true, "level" => 1])
+                <div class="accordion" id="accordion{{ $id}}">
+                    @foreach($tree["children"] as $item)
+                        <button class="btn btn-outline-primary btn-block text-left mb-3"
+                                type="button" data-toggle="collapse"
+                                data-target="#collapse{{ $item["slug"]}}"
+                                aria-expanded="true"
+                                aria-controls="{{ $item["slug"] }}">
+                            {{ $item["title"] }}
+                        </button>
+                        <div id="collapse{{ $item["slug"] }}"
+                             class="collapse"
+                             aria-labelledby="heading{{ $item["slug"] }}"
+                             data-parent="#accordion{{ $id }}">
+                            <div class="row documents-category">
+                                <div class="col-12">
+                                    @include("site-documents::site.document-categories.includes.item", ["item" => $item, "first" => true, "level" => 1])
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             @endforeach
         @else
             <div class="row documents-category">
