@@ -17,22 +17,25 @@
                     {{  $category->title }}
                 </h1>
                 @isset($category->short)
-                    <div class="documents-category__short">
-                        {!! $category->short  !!}
-                    </div>
+                    <p class="documents-category__short">
+                        {{ $category->short }}
+                    </p>
                 @endisset
             </div>
+            @isset($category->description)
+                <div class="col-12">
+                    <div class="documents-category__description">
+                        {!! $category->description  !!}
+                    </div>
+                </div>
+            @endisset
 
             @foreach(\Notabenedev\SiteDocuments\Facades\DocumentActions::getModelDocumentsIds("App\DocumentCategory",$category->id) as $id => $document)
                 @if ($loop->first)
                     <div class="col-12">
-                        <ul class="list-unstyled">
                 @endif
-                        <li>
-                            {!! $document->getTeaser() !!}
-                        </li>
+                    {!! $document->getTeaser() !!}
                 @if ($loop->last)
-                        </ul>
                     </div>
                 @endif
             @endforeach
@@ -76,11 +79,6 @@
 
         <div class="row documents-category">
             <div class="col-12">
-                @isset($category->description)
-                    <div class="documents-category__description">
-                        {!! $category->description  !!}
-                    </div>
-                @endisset
                 @isset($category->info)
                     <div class="documents-category__info">
                         {!! $category->info !!}
