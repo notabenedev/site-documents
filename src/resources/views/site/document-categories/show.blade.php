@@ -66,9 +66,9 @@
             @endforeach
         @else
             <div class="row documents-category">
-                <div class="col-12 d-flex flex-column flex-sm-row">
+                <div class="col-12">
                 @foreach($category->children as $item )
-                    <a class="btn btn-outline-primary documents-category__child"
+                    <a class="btn btn-outline-primary d-block documents-category__child"
                        href="{{ route("site.document-categories.show", ["category" => $item]) }}">
                             {{ $item->title }}
                     </a>
