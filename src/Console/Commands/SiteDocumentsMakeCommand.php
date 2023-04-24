@@ -82,7 +82,7 @@ class SiteDocumentsMakeCommand extends BaseConfigModelCommand
      */
     protected $controllers = [
         "Admin" => ["DocumentCategoryController", "DocumentController"],
-        "Site" => ["DocumentController", "DocumentCategoryController"],
+        "Site" => ["DocumentController", "DocumentCategoryController", "DocumentSearchController"],
     ];
 
 

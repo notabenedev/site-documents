@@ -8,6 +8,7 @@ return [
     "documentUrlName" => "document",
 
     "siteBreadcrumbs" => true,
+    "siteShowSearchForm" => true,
     "onePage" => false,
     "onePageSidebar" => false,
     "documentCategoriesNest" => 3,
@@ -18,6 +19,7 @@ return [
     "documentSignatureAjaxRoutes" => true,
     "documentSiteRoutes" => true,
     "documentSignatureSiteRoutes" => true,
+    "documentSearchRoutes" => true,
     "documentCategoryFacade" => \Notabenedev\SiteDocuments\Helpers\DocumentCategoryActionsManager::class,
     "documentFacade" => \Notabenedev\SiteDocuments\Helpers\DocumentActionsManager::class,
     "documentModels" => array(

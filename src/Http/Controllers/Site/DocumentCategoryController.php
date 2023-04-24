@@ -36,10 +36,13 @@ class DocumentCategoryController extends Controller
             }
 
             $categories = DocumentCategoryActions::getTree();
+            $pageMetas = Meta::getByPageKey(config("site.document-categories.index"));
+
             return view("site-documents::site.document-categories.index", [
                 "rootCategories" =>  DocumentCategoryActions::getRootCategories(),
                 "categories" => $categories,
                 "siteBreadcrumb" => $siteBreadcrumb,
+                "pageMetas" =>  $pageMetas,
             ]);
 
         }
@@ -92,12 +95,13 @@ class DocumentCategoryController extends Controller
                 $siteBreadcrumb = DocumentCategoryActions::getSiteBreadcrumb($category);
             }
             $childrenTree = DocumentCategoryActions::getChildrenTree($category);
+            $pageMetas = Meta::getByModelKey($category);
             return view("site-documents::site.document-categories.show", [
                 "category" => $category,
                 "childrenTree" => $childrenTree,
                 "siteBreadcrumb" => $siteBreadcrumb,
+                "pageMetas" => $pageMetas,
             ]);
         }
     }
-
 }

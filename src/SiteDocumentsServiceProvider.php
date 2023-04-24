@@ -54,6 +54,9 @@ class SiteDocumentsServiceProvider extends ServiceProvider
         if (config("site-documents.documentSiteRoutes")) {
             $this->loadRoutesFrom(__DIR__."/routes/site/document.php");
         }
+        if (config("site-documents.documentSearchRoutes")) {
+            $this->loadRoutesFrom(__DIR__."/routes/site/search.php");
+        }
 
         // Подключение шаблонов.
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'site-documents');

@@ -18,8 +18,12 @@
         {--menu : create admin menu}
 
 ## Log
-    v0.0.5 document-categotries show: accordion to nested
-    v0.0.4 document-categotries index: onePageSidebar config
+    v0.0.8 search:
+            - php artisan make:documents --controllers
+    v0.0.7 document-categories show: nestet btns - blocks
+    v0.0.6 document-categories show: description first
+    v0.0.5 document-categories show: accordion to nested
+    v0.0.4 document-categories index: onePageSidebar config
     v0.0.3 Styles
             - php artisan vendor:publish --provider="Notabenedev\SiteDocuments\SiteDocumentsServiceProvider" --tag=public --force
     v0.0.2 add onePageSidebar config:

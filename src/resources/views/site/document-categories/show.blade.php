@@ -1,6 +1,6 @@
 @extends('layouts.boot')
 
-@section('page-title', $category->title.' - '.config("site-documents.sitePackageName","Документы "))
+@section('page-title', $category->title.' - '.config("site-documents.sitePackageName","Документы ")." - ")
 
 @section('content')
 
