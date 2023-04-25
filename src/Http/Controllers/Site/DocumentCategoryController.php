@@ -36,7 +36,7 @@ class DocumentCategoryController extends Controller
             }
 
             $categories = DocumentCategoryActions::getTree();
-            $pageMetas = Meta::getByPageKey(config("site.document-categories.index"));
+            $pageMetas = Meta::getByPageKey(config("site-documents.documentCategoryUrlName"));
 
             return view("site-documents::site.document-categories.index", [
                 "rootCategories" =>  DocumentCategoryActions::getRootCategories(),
