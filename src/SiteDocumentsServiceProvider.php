@@ -60,7 +60,7 @@ class SiteDocumentsServiceProvider extends ServiceProvider
 
         // Подключение шаблонов.
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'site-documents');
-        if (! config("site-group-price.onePage", false)) {
+        if (! config("site-documents.onePage", false)) {
             view()->composer("site-documents::site.document-categories.includes.sidebar", function (View $view){
                 $view->with("categoriesTree", DocumentCategory::getTree());
             });
