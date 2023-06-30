@@ -2,7 +2,13 @@
         <div>
             @if ($item->children->count() && !$item->nested)
                 <a href="{{ route($route, ["category" => $item]) }}"
-                   class="documents-sidebar__link documents-sidebar__link_drop{{ $item->id === $category->id ? " documents-sidebar__link_active" : "" }}">
+                   class="documents-sidebar__link documents-sidebar__link_drop
+                        {{ $item->id === $category->id || $item->id === $category->parent_id
+                        || (isset($category->parent->parent_id) && $item->id === $category->parent->parent_id)
+                        || (isset($category->parent->parent) && $item->id === $category->parent->parent->parent_id)
+                        || (isset($category->parent->parent->parent) && $item->id === $category->parent->parent->parent->parent_id)
+                        || (isset($category->parent->parent->parent->parent) && $item->id === $category->parent->parent->parent->parent->parent_id) ? " documents-sidebar__link_active" : "" }}
+                           ">
                     {{ $item->title }}
                     <i class="fas fa-caret-down"></i>
                 </a>

@@ -1,6 +1,14 @@
 <div class="document">
     <div class="document__ico" data-toggle="tooltip" data-html="true" title="{{ $document->description }}">
-        <i class="fas fa-file-alt fa-2x"></i>
+        @if ($download)
+            @if($lightbox)
+                <i class="far fa-file-image fa-2x"></i>
+            @else
+                <i class="far fa-file-alt fa-2x"></i>
+            @endif
+        @else
+            <i class="far fa-file-pdf fa-2x"></i>
+        @endif
     </div>
     <div class="document__info">
         <p class="document__title">{{ $document->title }}</p>
@@ -10,11 +18,16 @@
                 Скачать
             </a>
             (Размер {{ $size/1000 }} Кб)
-            <a class="document__link ml-sm-2" target="_blank" href="http://docs.google.com/gview?url={{ $document->show_url }}&embedded=true">
-                <i class="far fa-eye"></i> Просмотр
-            </a>
-
-            @else()
+            @if($lightbox)
+                <a class="document__link ml-sm-2" href="{{ $document->show_url }}" data-lightbox="{{ $document->slug }}">
+                    <i class="far fa-eye"></i> Просмотр
+                </a>
+            @else
+                <a class="document__link ml-sm-2" target="_blank" href="http://docs.google.com/gview?url={{ $document->show_url }}&embedded=true">
+                    <i class="far fa-eye"></i> Просмотр
+                </a>
+            @endif
+        @else()
             (Размер {{ $size/1000 }} Кб)
             <a class="document__link ml-sm-2" target="_blank" href="{{ $document->show_url }}">
                 <i class="far fa-eye"></i> Просмотр

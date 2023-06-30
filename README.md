@@ -18,6 +18,11 @@
         {--menu : create admin menu}
 
 ## Log
+    v0.1.2 item-sidebar.blade.php (раскрытие родителя) & documents/teaser.blade.php (доп иконки для документов в виде картинок)
+    v0.1.1 Base 4.0
+    v0.1.0 SiteDocumentsServiceProvider & sidebar.blade.php fix
+    v0.0.9 DocumentCategory meta fix: 
+            - проверить переопределение Site/DocumentCategoryController.php
     v0.0.8 search:
             - php artisan make:documents --controllers
     v0.0.7 document-categories show: nestet btns - blocks
