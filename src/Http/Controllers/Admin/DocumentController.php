@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Notabenedev\SiteDocuments\Facades\DocumentActions;
 
 class DocumentController extends Controller
 {
@@ -116,7 +117,7 @@ class DocumentController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function updateOrder(Request $request, $model, $id)
+    public function updateOrder(Request $request, $modelShort, $modelId)
     {
         Validator::make($request->all(), [
             "documents" => ["required", "array"],
@@ -130,6 +131,8 @@ class DocumentController extends Controller
                 ->where("id", $id)
                 ->update(["priority" => $weight]);
         }
+        $model =  Document::getDocumentModel($modelShort, $modelId);
+        DocumentActions::forgetModelDocumentsIds(ucfirst($modelShort), $model->id, $model);
         return response()
             ->json([
                 "success" => true,

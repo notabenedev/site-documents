@@ -4,6 +4,7 @@ namespace Notabenedev\SiteDocuments\Helpers;
 
 use App\Document;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Notabenedev\SiteDocuments\Facades\DocumentCategoryActions;
 
 class DocumentActionsManager
@@ -11,7 +12,8 @@ class DocumentActionsManager
     /**
      * Получить id документов категории, либо  категории и подкатегории.
      *
-     * @param int $categoryId
+     * @param string $modelName
+     * @param int $modelId
      * @param $includeSubs
      * @return mixed
      */
@@ -55,6 +57,7 @@ class DocumentActionsManager
     public function forgetModelDocumentsIds($modelShort, $modelId, $model)
     {
         $key = "document-actions-get{$modelShort}Documents:{$modelId}";
+
         Cache::forget("$key-true");
         Cache::forget("$key-false");
         if (isset($model->parent_id) && ! empty($model->parent_id)) {
