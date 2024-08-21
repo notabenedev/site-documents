@@ -134,7 +134,7 @@
                         <i class="fas fa-file-download"></i>
                       </a>
 
-                      <a class="btn btn-warning" v-if="signaturesCanViewAny" data-toggle="modal" v-bind:data-target="'#documentSigModal' + file.id">
+                      <a class="btn btn-warning" v-if="signaturesCanViewAny" data-bs-toggle="modal" v-bind:data-bs-target="'#documentSigModal' + file.id">
                         <i class="fas fa-signature"></i>
                       </a>
                     </div>
@@ -148,8 +148,7 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <h4 class="modal-title" v-bind:id="'documentSigModal' + file.id + 'Label'">Подпись .sig</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                           </div>
                           <div class="modal-body">

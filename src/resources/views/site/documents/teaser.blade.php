@@ -1,5 +1,5 @@
 <div class="document">
-    <div class="document__ico" data-toggle="tooltip" data-html="true" title="{{ $document->description }}">
+    <div class="document__ico" data-bs-toggle="tooltip" data-bs-html="true" title="{{ $document->description }}">
         @if ($download)
             @if($lightbox)
                 <i class="far fa-file-image fa-2x"></i>
@@ -35,8 +35,8 @@
         @endif
         @foreach($signatures as $signature)
             <div class="document-signature__link ml-sm-2 rounded-pill"
-                 data-toggle="modal"
-                 data-target="#Document{{ $signature->id }}SignatureModal">
+                 data-bs-toggle="modal"
+                 data-bs-target="#Document{{ $signature->id }}SignatureModal">
                 <i class="fas fa-signature" title="ЭП"></i>
             </div>
             <!-- Modal -->
@@ -50,8 +50,7 @@
                                 Подписано квалифицированной
                                 электронной подписью
                             </h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                         </div>
                         <div class="modal-body">
@@ -113,7 +112,7 @@
                                    </div>
                                @endisset
                                    <div class="col-12 my-3">
-                                       <a class="text-info document-signature__show-link" data-toggle="collapse"
+                                       <a class="text-info document-signature__show-link" data-bs-toggle="collapse"
                                           href="#collapseSignature{{ $signature->id }}"
                                           role="button" aria-expanded="false" a
                                           ria-controls="collapseExample">

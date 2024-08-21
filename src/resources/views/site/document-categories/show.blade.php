@@ -45,8 +45,8 @@
                 <div class="accordion" id="accordion{{ $id}}">
                     @foreach($tree["children"] as $item)
                         <button class="btn btn-outline-primary btn-block text-left mb-3"
-                                type="button" data-toggle="collapse"
-                                data-target="#collapse{{ $item["slug"]}}"
+                                type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse{{ $item["slug"]}}"
                                 aria-expanded="true"
                                 aria-controls="{{ $item["slug"] }}">
                             {{ $item["title"] }}
@@ -54,7 +54,7 @@
                         <div id="collapse{{ $item["slug"] }}"
                              class="collapse"
                              aria-labelledby="heading{{ $item["slug"] }}"
-                             data-parent="#accordion{{ $id }}">
+                             data-bs-parent="#accordion{{ $id }}">
                             <div class="row documents-category">
                                 <div class="col-12">
                                     @include("site-documents::site.document-categories.includes.item", ["item" => $item, "first" => true, "level" => 1])

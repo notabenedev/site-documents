@@ -93,7 +93,7 @@
     }
 
     &__children {
-      padding: .5rem $grid-gutter-width / 2;
+      padding: .5rem $grid-gutter-width * .5;
       margin-bottom: 0;
     }
 
