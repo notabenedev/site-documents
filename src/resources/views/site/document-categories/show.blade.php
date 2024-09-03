@@ -44,7 +44,7 @@
             @foreach($childrenTree as $id => $tree )
                 <div class="accordion" id="accordion{{ $id}}">
                     @foreach($tree["children"] as $item)
-                        <button class="btn btn-outline-primary btn-block text-left mb-3"
+                        <button class="btn btn-outline-primary btn-block text-start mb-3"
                                 type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse{{ $item["slug"]}}"
                                 aria-expanded="true"

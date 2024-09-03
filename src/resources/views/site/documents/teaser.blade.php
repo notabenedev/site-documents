@@ -19,22 +19,22 @@
             </a>
             (Размер {{ $size/1000 }} Кб)
             @if($lightbox)
-                <a class="document__link ml-sm-2" href="{{ $document->show_url }}" data-lightbox="{{ $document->slug }}">
+                <a class="document__link ms-sm-2" href="{{ $document->show_url }}" data-lightbox="{{ $document->slug }}">
                     <i class="far fa-eye"></i> Просмотр
                 </a>
             @else
-                <a class="document__link ml-sm-2" target="_blank" href="http://docs.google.com/gview?url={{ $document->show_url }}&embedded=true">
+                <a class="document__link ms-sm-2" target="_blank" href="http://docs.google.com/gview?url={{ $document->show_url }}&embedded=true">
                     <i class="far fa-eye"></i> Просмотр
                 </a>
             @endif
         @else()
             (Размер {{ $size/1000 }} Кб)
-            <a class="document__link ml-sm-2" target="_blank" href="{{ $document->show_url }}">
+            <a class="document__link ms-sm-2" target="_blank" href="{{ $document->show_url }}">
                 <i class="far fa-eye"></i> Просмотр
             </a>
         @endif
         @foreach($signatures as $signature)
-            <div class="document-signature__link ml-sm-2 rounded-pill"
+            <div class="document-signature__link ms-sm-2 rounded-pill"
                  data-bs-toggle="modal"
                  data-bs-target="#Document{{ $signature->id }}SignatureModal">
                 <i class="fas fa-signature" title="ЭП"></i>
@@ -114,8 +114,8 @@
                                    <div class="col-12 my-3">
                                        <a class="text-info document-signature__show-link" data-bs-toggle="collapse"
                                           href="#collapseSignature{{ $signature->id }}"
-                                          role="button" aria-expanded="false" a
-                                          ria-controls="collapseExample">
+                                          role="button" aria-expanded="false"
+                                          aria-controls="collapseSignature{{ $signature->id }}">
                                            Показать/скрыть электронную подпись
                                        </a>
                                        <div class="collapse" id="collapseSignature{{ $signature->id }}">
